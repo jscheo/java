@@ -7,7 +7,7 @@ public class StudentVO {
 	private String sno;
 	private String sname;
 	private String dept;
-	private Date birthday;
+	private String birthday;
 	private int year;
 	//생성자
 	
@@ -32,10 +32,10 @@ public class StudentVO {
 	public void setDept(String dept) {
 		this.dept = dept;
 	}
-	public Date getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
-	public void setBirthday(Date birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 	public int getYear() {
