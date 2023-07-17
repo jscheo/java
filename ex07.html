@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>일곱번째 예제</title>
+    <!-- jquarry가 헤드에 선언이 되어있어야함 사용하려면 -->
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+</head>
+<body>
+    <!-- onclick : 클릭했을 때 섬 함수를 실행하겠다는 뜻 -->
+    <button onclick="sum();">1~100까지의 합계</button>
+    <h1>1~100까지 결과:<span id="sum">0</span></h1>
+    <hr>
+    <button id="btnsum">jquery를 이용한 1~100까지의 짝수의 합</button>
+
+</body>
+
+<script>
+    // jquarry 사용할때는 앞에 $가 붙음
+   // btnsum 이 아이디인 버튼을 클릭했을 때 함수가 실행됨
+    $("#btnsum").on("click",function(){
+        let sum = 0;
+        for(let i = 2; i<=100; i=i+2){
+            sum+=i;
+        }
+        // html은 html 내용도 넣어줄 수 있고 그냥 출력만 할거면 text도 가능
+        $("#sum").html(sum)
+    });
+    // 자바의 매서드와 동일
+    function sum(){
+        let sum = 0;
+        for(let i = 1; i <=100; i++){
+            sum += i;
+        }
+    //  alert(`1~100까지 합게 =${sum}`);
+    // 새로운 변수를 지정해서 sum을 넣어주고 다시 html로 출력해주는 구문
+        let span_sum =document.getElementById("sum");
+        span_sum.innerHTML=(sum);
+    }
+    //sum();
+</script>
+
+</html>
