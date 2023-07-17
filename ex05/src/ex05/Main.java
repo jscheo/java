@@ -51,7 +51,8 @@ public class Main {
 			case "3"://목록
 				for(StudentVO vo : dao.list()) {
 					
-					System.out.printf("%s\t%s\t%s\t%s\t%d\n",vo.getSno(),vo.getSname(),vo.getDept(),vo.getBirthday().substring(0, 10),vo.getYear());
+					System.out.printf("%s\t%s\t%s\t%s\t%d\n"
+							,vo.getSno(),vo.getSname(),vo.getDept(),vo.getBirthday().substring(0, 10),vo.getYear());
 				}
 				break;
 			case "4"://수정
