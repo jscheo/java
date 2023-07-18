@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상품관리</title>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+    <h1 class="title">상품관리</h1>
+    <!-- 입력폼 -->
+    <form name="frm">
+        <input name="code" placeholder="상품코드" size="10">
+        <hr>
+        <!-- 이름은 무조건 들어가야함  -->
+        <input name="name" placeholder="상품이름" size="50">
+        <hr>
+        <input name="price" type="number" size="10" step="1000"> 원
+        <hr>
+        <input type="submit" value="상품등록">
+        <input type="reset" value="등록취소">
+
+    </form>
+    <h1 class="title">상품목록</h1>
+    <!-- 상품목록이 출력될 공간 -->
+    <div id="list"></div>
+    <!-- 상품목록에 들어갈 템플릿 -->
+    <script id="temp" type="text/x-handlebars-template">
+        <table>
+        {{#each .}}
+            <tr class="row" index="{{@index}}">
+                <td>{{code}}</td>;
+                <td clss="name">{{name}}</td>;
+                <td>{{price}}</td>;
+                <td><button>삭제</button></td>
+            </tr>
+        {{/each}}    
+        </table>
+    </script>    
+</body>
+<script>
+    let code = 103;
+    $(frm.code).val(code);
+
+    //각 행의 삭제버튼을 누른경우
+    $("#list").on("click","tr td button", function(){
+        let row = $(this).parent().parent();
+        let code = row.find(".code").text();
+        // let name= row.attr("name");
+        let index = row.attr("index");
+        if(confirm(code + '번 상품을 삭제하시겠습니까?')){
+            products.splice(index, 1);
+            getlist();
+        }
+    });
+   
+    //상품 json 데이터
+    let products=[
+        {code: 100, name: '오브제냉장고', price : 2500000},
+        {code: 101, name: '오브제세탁기', price : 1500000},
+        {code: 102, name: '오브제스타일러', price : 1200000},
+    ]
+
+    //목록을 출력하는 함수 선언하는방법
+    getList();
+    function getList(){
+        let temp=Handlebars.compile($("#temp").html());
+        $("#list").html(temp(products));
+    }
+    //폼이 서밋될때 유효성체크
+    $(frm).on("submit", function(event){
+        event.preventDefault();
+        let code=$(frm.code).val();
+        let name=$(frm.name).val();
+        let price=$(frm.price).val();
+
+        if(code==""){
+            alert("상품코드를 입력하세요!");
+            $(frm.code).focus();
+        }else if(name==""){
+            alert("상품이름을 입력하세요!")
+            $(frm.name).focus();
+        }else if(price==""){
+            alert("상품가격을 입력하세요!")
+            $(frm.price).val();
+        }else{
+            if(confirm ("새로운 상품을 등록하실래요?")){
+                const product={code:code, name:name, price:price};
+                products.push(product);
+                getlist();
+                alert(`상품코드:${code}\n 상품이름:${name}\n 상품가격:${price} \n등록완료!`);
+                code++;
+                $(frm.code).val(code);
+            }else{
+                alert("등록이 취소되었습니다.");
+            }
+        }
+    });
+</script>
+</html>
