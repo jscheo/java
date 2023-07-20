@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>여섯번째 예제</title>
+    <style>
+        input, select{
+            border: 1px solid red;
+            padding: 5px 20px;
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- 입력태그 -->
+    <form>
+        <!-- placeholder 입력값 힌트주기 /value 값 주기 -->
+        <input placeholder="이름입력" value="홍길동" size="10"/>
+        <hr>
+        <input type="password" placeholder="비밀번호">
+        <hr>
+        <!-- 선택상자 만들기 -->
+        <select>
+            <option value="01">컴정과</option>
+            <option value="02">전자과</option>
+            <option value="03">통신과</option>
+        </select>
+        <hr>
+        <input type="radio" name="gender" value="M">남    
+        <input type="radio" name="gender" value="F">여
+        <hr>
+        <input type="checkbox">영화감상
+        <input type="checkbox">컴퓨터게임
+        <input type="checkbox">등산
+        <hr>
+        <input type="submit" value="등록">
+        <input type="reset" value="취소">
+        <input type="button" value="목록으로">
+        <button>버튼</button>
+    </form>
+</body>
+</html>
